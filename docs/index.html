@@ -588,7 +588,7 @@ async function exportPPTX() {
   const { value: formValues } = await Swal.fire({
     title: 'تجهيز ملف البوربوينت',
     html:
-      '<input id="swal-name" class="swal2-input" placeholder="اسم المعلم" value="'+user.username+'">' +
+      '<input id="swal-name" class="swal2-input" placeholder="اسم المعلم">' +
       '<input id="swal-manager" class="swal2-input" placeholder="اسم المدير">' +
       '<input id="swal-school" class="swal2-input" placeholder="اسم المدرسة">',
     focusConfirm: false,
@@ -733,4 +733,5 @@ init();
 </script>
 
 </body>
+
 </html>
