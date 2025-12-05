@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>ملف إنجاز المعلم - الإصدار الذكي</title>
+  <title>ملف إنجاز المعلم | MOE SF2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -12,224 +12,62 @@
 
   <style>
     :root {
-      --primary: #10b981; /* أخضر زمردي */
-      --primary-dark: #059669;
-      --bg-dark: #0f172a;
-      --card-bg: #1e293b;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --border: rgba(148, 163, 184, 0.2);
+      --primary: #0ea5e9;
+      --primary-hover: #0284c7;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
     }
-    
     * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
-
-    body {
-      margin: 0;
-      background: var(--bg-dark);
-      color: var(--text-main);
-      min-height: 100vh;
-      padding-bottom: 40px;
-    }
-
-    /* === Header === */
-    header {
-      background: rgba(30, 41, 59, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-    
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .brand img {
-      width: 45px;
-      height: 45px;
-      border-radius: 10px;
-      object-fit: cover;
-      background: #fff;
-      padding: 2px;
-    }
-    .brand-text h1 { margin: 0; font-size: 18px; font-weight: 800; color: #fff; }
-    .brand-text p { margin: 0; font-size: 11px; color: var(--primary); }
-
-    .user-info {
-      background: rgba(0,0,0,0.3);
-      padding: 6px 15px;
-      border-radius: 20px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid var(--border);
-    }
-    .logout-btn {
-      background: rgba(239, 68, 68, 0.2);
-      color: #fca5a5;
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .logout-btn:hover { background: #ef4444; color: #fff; }
-
-    /* === Main Layout === */
-    .app-container {
-      max-width: 1200px;
-      margin: 25px auto;
-      padding: 0 15px;
-      display: grid;
-      grid-template-columns: 2fr 1.2fr;
-      gap: 20px;
-    }
+    body { margin: 0; background: var(--bg-main); color: var(--text-main); min-height: 100vh; padding-bottom: 50px; }
+    header { background: #fff; border-bottom: 1px solid var(--border); padding: 15px 20px; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; background: #f1f5f9; padding: 4px; border: 1px solid var(--border); }
+    .brand-text h1 { margin: 0; font-size: 20px; font-weight: 800; color: var(--text-main); }
+    .brand-text p { margin: 0; font-size: 12px; color: var(--primary); font-weight: 600; }
+    .user-info { background: #f1f5f9; padding: 8px 16px; border-radius: 30px; font-size: 13px; display: flex; align-items: center; gap: 12px; border: 1px solid var(--border); }
+    .logout-btn { background: #fee2e2; color: #dc2626; border: none; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .logout-btn:hover { background: #fecaca; }
+    .app-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1.2fr; gap: 25px; }
     @media (max-width: 900px) { .app-container { grid-template-columns: 1fr; } }
-
-    /* === Panels === */
-    .panel {
-      background: var(--card-bg);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      position: relative;
-    }
-    .panel-header {
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-    }
-    .panel-title { font-size: 18px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
-    
-    /* === Criteria Grid === */
-    .criteria-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 15px;
-    }
-
-    .criterion-card {
-      background: #0f172a;
-      border: 1px dashed rgba(148, 163, 184, 0.4);
-      border-radius: 12px;
-      padding: 15px;
-      transition: all 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .criterion-card:hover {
-      border-color: var(--primary);
-      background: #131c33;
-    }
-    .criterion-card.has-files {
-      border-style: solid;
-      border-color: var(--primary);
-      background: rgba(16, 185, 129, 0.05);
-    }
-    
-    .c-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-    .c-title { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.4; }
-    .c-badge {
-      font-size: 10px; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; height: fit-content;
-      color: var(--text-muted);
-    }
-    .c-badge.active { background: var(--primary); color: #000; font-weight: bold; }
-
-    /* === Upload Area === */
-    .drop-zone {
-      border-radius: 8px;
-      background: rgba(0,0,0,0.2);
-      padding: 15px;
-      text-align: center;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .drop-zone:hover { background: rgba(0,0,0,0.4); }
-    .drop-text { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; }
-    .drop-icon { font-size: 20px; display: block; margin-bottom: 5px; }
-
-    /* Preview Thumbs */
-    .thumbs-container {
-      display: flex; gap: 4px; overflow-x: auto; margin-top: 10px; padding-bottom: 4px;
-    }
-    .thumb {
-      width: 40px; height: 40px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0;
-    }
-
-    /* === Buttons === */
-    .btn-main {
-      width: 100%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #fff;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-      transition: transform 0.2s;
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-main:hover { transform: translateY(-2px); }
-    .btn-main:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
-
-    .btn-sec {
-      background: #334155; color: #e2e8f0; border: 1px solid var(--border);
-      padding: 12px; width: 100%; border-radius: 10px; cursor: pointer; margin-top: 10px;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    .btn-sec:hover:not(:disabled) { background: #475569; }
-    .btn-sec:disabled { opacity: 0.5; cursor: default; }
-
-    /* === QR List === */
-    .qr-list { display: flex; flex-direction: column; gap: 10px; max-height: 600px; overflow-y: auto; }
-    .qr-item {
-      background: #0f172a;
-      border: 1px solid var(--border);
-      padding: 10px;
-      border-radius: 10px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .qr-img { width: 70px; height: 70px; background: #fff; padding: 4px; border-radius: 6px; }
+    .panel { background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border); padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
+    .panel-header { margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
+    .panel-title { font-size: 18px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+    .criteria-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+    .criterion-card { background: #f8fafc; border: 2px solid transparent; border-radius: 16px; padding: 15px; transition: all 0.2s; position: relative; overflow: hidden; }
+    .criterion-card:hover { border-color: #cbd5e1; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .criterion-card.has-files { border-color: var(--primary); background: #f0f9ff; }
+    .c-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
+    .c-title { font-size: 13px; font-weight: 700; color: #334155; line-height: 1.5; }
+    .c-badge { font-size: 11px; background: #e2e8f0; padding: 3px 8px; border-radius: 6px; height: fit-content; color: #64748b; font-weight: 600; }
+    .c-badge.active { background: var(--primary); color: #fff; }
+    .drop-zone { border-radius: 12px; background: #fff; border: 2px dashed #cbd5e1; padding: 15px; text-align: center; cursor: pointer; transition: 0.2s; }
+    .drop-zone:hover { border-color: var(--primary); background: #f0f9ff; }
+    .drop-text { font-size: 11px; color: var(--text-muted); }
+    .drop-icon { font-size: 24px; display: block; margin-bottom: 5px; color: #94a3b8; }
+    .thumbs-container { display: flex; gap: 6px; overflow-x: auto; margin-top: 12px; padding-bottom: 4px; }
+    .thumb { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-shrink: 0; }
+    .btn-main { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: #fff; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25); transition: transform 0.2s; margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(14, 165, 233, 0.35); }
+    .btn-main:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; background: #94a3b8; }
+    .btn-sec { background: #334155; color: #fff; border: none; padding: 14px; width: 100%; border-radius: 14px; cursor: pointer; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; }
+    .btn-sec:hover { background: #1e293b; }
+    .qr-list { display: flex; flex-direction: column; gap: 12px; max-height: 500px; overflow-y: auto; }
+    .qr-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 16px; display: flex; gap: 15px; align-items: center; transition: 0.2s; }
+    .qr-item:hover { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .qr-img { width: 70px; height: 70px; background: #fff; padding: 5px; border-radius: 10px; border: 1px solid #e2e8f0; }
     .qr-details { flex: 1; min-width: 0; }
-    .qr-name { font-size: 12px; font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .qr-link { font-size: 10px; color: var(--primary); text-decoration: none; word-break: break-all; display: block; margin-bottom: 6px; }
-    .btn-xs { padding: 4px 8px; font-size: 10px; border-radius: 4px; border: none; cursor: pointer; background: #334155; color: white; }
-
-    /* === Footer === */
-    .footer-note { text-align: center; margin-top: 30px; font-size: 12px; color: #64748b; }
-
-    /* === Custom Scrollbar === */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    .qr-name { font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #1e293b; }
+    .qr-link { font-size: 11px; color: var(--primary); text-decoration: none; word-break: break-all; display: block; margin-bottom: 8px; }
+    .btn-xs { padding: 5px 10px; font-size: 11px; border-radius: 6px; border: none; cursor: pointer; background: #e2e8f0; color: #475569; font-weight: 600; }
+    .btn-xs:hover { background: #cbd5e1; }
+    .footer-note { text-align: center; margin-top: 40px; font-size: 13px; color: #94a3b8; font-weight: 500; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
   </style>
 </head>
 <body>
@@ -237,15 +75,15 @@
 <header>
   <div class="header-content">
     <div class="brand">
-      <img src="teacher_logo.png" alt="logo" onerror="this.style.display='none'">
+      <img src="teacher_logo.png" alt="logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2995/2995456.png'">
       <div class="brand-text">
         <h1>ملف الإنجاز الذكي</h1>
-        <p>توليد صفحات الشواهد + QR + PowerPoint</p>
+        <p>نظام التوثيق المتطور - MOE SF2</p>
       </div>
     </div>
     
     <div class="user-info">
-      <span>👤 أهلاً، <span id="display-username" style="color:#fff;font-weight:bold;">...</span></span>
+      <span>👤 مرحباً، <span id="display-username" style="color:var(--primary);font-weight:bold;">...</span></span>
       <button class="logout-btn" onclick="logout()">خروج</button>
     </div>
   </div>
@@ -256,37 +94,30 @@
   <section class="panel">
     <div class="panel-header">
       <div class="panel-title"><span>📂</span> المعايير والشواهد</div>
-      <div style="font-size:12px; color:#94a3b8;">اضغط أو اسحب الصور للإضافة</div>
+      <div style="font-size:12px; color:#64748b; font-weight:500;">اسحب الصور داخل المربعات</div>
     </div>
-
-    <div id="criteria-container" class="criteria-grid">
-      </div>
-
+    <div id="criteria-container" class="criteria-grid"></div>
     <button id="btn-generate" class="btn-main" onclick="startGeneration()">
-      <span>🚀</span> رفع الشواهد وتوليد الروابط
+      <span>🚀</span> رفع الشواهد وإنشاء الملفات
     </button>
   </section>
 
   <section class="panel">
     <div class="panel-header">
-      <div class="panel-title"><span>📊</span> المخرجات (QR & PPTX)</div>
+      <div class="panel-title"><span>📊</span> المخرجات النهائية</div>
     </div>
-
-    <div id="empty-state" style="text-align:center; padding: 40px 0; color: #64748b;">
-      <div style="font-size:40px; margin-bottom:10px; opacity:0.3;">⏳</div>
-      <p>لم يتم التوليد بعد.<br>اختر الصور واضغط على زر التوليد.</p>
+    <div id="empty-state" style="text-align:center; padding: 50px 0; color: #94a3b8;">
+      <div style="font-size:48px; margin-bottom:15px; opacity:0.5;">☁️</div>
+      <p style="font-weight:500;">النظام جاهز للعمل.<br>قم برفع الصور للبدء.</p>
     </div>
-
     <div id="results-area" style="display:none;">
-      <div style="margin-bottom: 15px; font-size:13px; color:#4ade80;">
-        ✅ تم إنشاء الصفحات بنجاح! انتظر قليلاً لتفعيل الروابط.
+      <div style="background:#dcfce7; color:#166534; padding:10px; border-radius:10px; font-size:13px; margin-bottom:15px; font-weight:600; text-align:center;">
+        ✅ تم إنشاء الروابط بنجاح!
       </div>
-      
       <div id="qr-list" class="qr-list"></div>
-      
-      <div style="margin-top:20px; border-top:1px solid var(--border); padding-top:15px;">
+      <div style="margin-top:25px; border-top:2px solid #f1f5f9; padding-top:20px;">
         <button id="btn-pptx" class="btn-sec" onclick="exportPPTX()">
-          <span>📥</span> تحميل ملف PowerPoint النهائي
+          <span>📥</span> تحميل عرض PowerPoint
         </button>
       </div>
     </div>
@@ -294,13 +125,11 @@
 
 </div>
 
-<div class="footer-note">
-  نظام ملف الإنجاز الإلكتروني - جميع الحقوق محفوظة © 1447هـ
-</div>
+<div class="footer-note">وزارة التعليم - نظام ملف الإنجاز الإلكتروني الإصدار الثاني © 1447هـ</div>
 
 <script>
 // =============================
-// إعدادات وبيانات
+// إعدادات النظام الجديدة (معدلة)
 // =============================
 const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
 if (!user) window.location.href = "login.html";
@@ -308,9 +137,15 @@ if (!user) window.location.href = "login.html";
 document.getElementById("display-username").textContent = user.username;
 
 const CONFIG = {
-  workerUrl: "https://moe-uploader.snh-saud.workers.dev/",
-  baseUrl: "https://xsf3x.github.io/MOE-SA",
-  teacherFolder: "TEACHER-SA",
+  // رابط الوركر الخاص بك (يبقى كما هو)
+  workerUrl: "https://moe-users.snh-saud.workers.dev/", 
+  
+  // *** الرابط الأساسي للموقع الجديد MOE-SF2 ***
+  baseUrl: "https://xsf3x.github.io/MOE-SF2", 
+  
+  // اسم المجلد داخل docs
+  teacherFolder: "TEACHERS", 
+
   criteria: [
     "المعيار الأول : أداء الواجبات الوظيفية",
     "المعيار الثاني : التفاعل مع المجتمع المهني",
@@ -321,243 +156,120 @@ const CONFIG = {
     "المعيار السابع : توظيف تقنيات ووسائل التعلم المناسبة",
     "المعيار الثامن : تهيئة البيئة التعليمية",
     "المعيار التاسع : الإدارة الصفية",
-    "المعيار العاشر : تحليل نتائج المتعلمين وتشخيص مستوياتهم",
+    "المعيار العاشر : تحليل نتائج المتعلمين",
     "المعيار الحادي عشر : تنوع أساليب وأدوات التقويم",
     "منجزات أخرى خلال العام الدراسي ١٤٤٧هـ"
   ]
 };
 
-// حالة التطبيق
-let appState = {
-  selectedFiles: {}, // { 1: [File, File], 2: [] }
-  generatedQR: []    // { id, name, url, base64 }
-};
+let appState = { selectedFiles: {}, generatedQR: [] };
 
-// =============================
-// تهيئة الصفحة
-// =============================
 function init() {
   const container = document.getElementById("criteria-container");
   container.innerHTML = "";
-
   CONFIG.criteria.forEach((name, index) => {
     const id = index + 1;
     appState.selectedFiles[id] = [];
-
     const card = document.createElement("div");
     card.className = "criterion-card";
     card.id = `card-${id}`;
-    
     card.innerHTML = `
-      <div class="c-header">
-        <div class="c-title">${name}</div>
-        <div class="c-badge" id="badge-${id}">0 صور</div>
-      </div>
-      
+      <div class="c-header"><div class="c-title">${name}</div><div class="c-badge" id="badge-${id}">0</div></div>
       <div class="drop-zone" onclick="document.getElementById('file-${id}').click()">
         <input type="file" id="file-${id}" multiple accept="image/*" style="display:none" onchange="handleFileSelect(${id}, this)">
-        <span class="drop-icon">📁</span>
-        <span class="drop-text">اختر الصور</span>
+        <span class="drop-icon">📷</span><span class="drop-text">اختر الصور</span>
       </div>
-
       <div class="thumbs-container" id="thumbs-${id}"></div>
     `;
-
-    // تفعيل السحب والإفلات
-    const dropZone = card.querySelector('.drop-zone');
-    
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropZone.style.background = "rgba(16, 185, 129, 0.2)";
+    const dz = card.querySelector('.drop-zone');
+    dz.addEventListener('dragover', e => { e.preventDefault(); dz.style.borderColor = 'var(--primary)'; dz.style.background = '#f0f9ff'; });
+    dz.addEventListener('dragleave', e => { e.preventDefault(); dz.style.borderColor = '#cbd5e1'; dz.style.background = '#fff'; });
+    dz.addEventListener('drop', e => {
+      e.preventDefault(); dz.style.borderColor = '#cbd5e1'; dz.style.background = '#fff';
+      if(e.dataTransfer.files.length) addFiles(id, e.dataTransfer.files);
     });
-    
-    dropZone.addEventListener('dragleave', (e) => {
-      e.preventDefault();
-      dropZone.style.background = "rgba(0,0,0,0.2)";
-    });
-    
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.style.background = "rgba(0,0,0,0.2)";
-      if(e.dataTransfer.files.length > 0) {
-        addFiles(id, e.dataTransfer.files);
-      }
-    });
-
     container.appendChild(card);
   });
 }
 
-// =============================
-// إدارة الملفات
-// =============================
-function handleFileSelect(id, input) {
-  if (input.files.length > 0) {
-    addFiles(id, input.files);
-  }
-}
-
+function handleFileSelect(id, input) { if(input.files.length) addFiles(id, input.files); }
 function addFiles(id, fileList) {
-  const files = Array.from(fileList);
-  appState.selectedFiles[id] = [...appState.selectedFiles[id], ...files];
+  appState.selectedFiles[id] = [...appState.selectedFiles[id], ...Array.from(fileList)];
   updateCardUI(id);
 }
 
 function updateCardUI(id) {
   const files = appState.selectedFiles[id];
-  const badge = document.getElementById(`badge-${id}`);
-  const card = document.getElementById(`card-${id}`);
+  document.getElementById(`badge-${id}`).textContent = files.length;
+  document.getElementById(`badge-${id}`).classList.toggle("active", files.length > 0);
+  document.getElementById(`card-${id}`).classList.toggle("has-files", files.length > 0);
   const thumbs = document.getElementById(`thumbs-${id}`);
-
-  badge.textContent = `${files.length} صور`;
-  
-  if (files.length > 0) {
-    badge.classList.add("active");
-    card.classList.add("has-files");
-  } else {
-    badge.classList.remove("active");
-    card.classList.remove("has-files");
-  }
-
-  // تحديث المعاينة
   thumbs.innerHTML = "";
   files.forEach(file => {
     const reader = new FileReader();
-    reader.onload = (e) => {
-      const img = document.createElement("img");
-      img.src = e.target.result;
-      img.className = "thumb";
-      thumbs.appendChild(img);
+    reader.onload = e => {
+      const img = document.createElement("img"); img.src = e.target.result; img.className = "thumb"; thumbs.appendChild(img);
     };
     reader.readAsDataURL(file);
   });
 }
 
-// =============================
-// عملية التوليد (المنطق الرئيسي)
-// =============================
 async function startGeneration() {
-  const filledCriteria = Object.keys(appState.selectedFiles).filter(id => appState.selectedFiles[id].length > 0);
-  
-  if (filledCriteria.length === 0) {
-    Swal.fire('تنبيه', 'لم تقم باختيار أي صور لأي معيار!', 'warning');
-    return;
-  }
+  const filledIds = Object.keys(appState.selectedFiles).filter(id => appState.selectedFiles[id].length > 0);
+  if (!filledIds.length) return Swal.fire('تنبيه', 'يجب اختيار صور أولاً', 'info');
 
   const safeName = user.username.replace(/[^a-zA-Z0-9\u0600-\u06FF\s_-]/g, "").trim().replace(/\s+/g, "-");
-  const uploadBase = `docs/${CONFIG.teacherFolder}/${safeName}`;
+  
+  // *** التصحيح هنا: مسار الرفع يحتوي على docs ***
+  const uploadPathPrefix = `docs/${CONFIG.teacherFolder}/${safeName}`;
 
-  // تأكيد البدء
-  const result = await Swal.fire({
-    title: 'بدء التوليد؟',
-    text: `سيتم رفع الصور وإنشاء الصفحات لـ ${filledCriteria.length} معيار.`,
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonText: 'نعم، ابدأ',
-    cancelButtonText: 'إلغاء',
-    confirmButtonColor: '#10b981'
-  });
-
-  if (!result.isConfirmed) return;
+  if(!await Swal.fire({ title: 'هل أنت جاهز؟', text: `سيتم الرفع لـ ${filledIds.length} معيار`, icon: 'question', showCancelButton: true, confirmButtonText: 'ابدأ', confirmButtonColor: 'var(--primary)' }).then(r=>r.isConfirmed)) return;
 
   const btn = document.getElementById("btn-generate");
   btn.disabled = true;
-  appState.generatedQR = []; // تصفير
+  appState.generatedQR = [];
 
-  // إظهار نافذة التحميل
-  let progressStep = 0;
-  const totalSteps = filledCriteria.length + 1; // +1 for config/finalizing
-
-  Swal.fire({
-    title: 'جاري العمل...',
-    html: 'يرجى الانتظار، يتم الآن رفع الملفات وتوليد الصفحات.<br><b>لا تغلق الصفحة</b>',
-    didOpen: () => { Swal.showLoading(); },
-    allowOutsideClick: false
-  });
+  Swal.fire({ title: 'جاري العمل...', html: 'يرجى عدم إغلاق الصفحة', didOpen: () => Swal.showLoading() });
 
   try {
-    // 1. Ensure Config
+    // ملف config داخل docs
     await githubUpload("docs/_config.yml", `include:\n  - "**/*.html"\n`);
 
-    // 2. Loop Criteria
-    for (const id of filledCriteria) {
+    for (const id of filledIds) {
       const files = appState.selectedFiles[id];
       const critName = CONFIG.criteria[id - 1];
-      
-      Swal.update({ html: `جاري معالجة: <b>${critName}</b>` });
+      Swal.update({ html: `جاري رفع: <b>${critName}</b>` });
 
-      // Convert images to Base64
-      const imagesHtml = await Promise.all(files.map(async file => {
-        const b64 = await fileToDataURL(file);
+      const imgs = await Promise.all(files.map(async f => {
+        const b64 = await fileToDataURL(f);
         return `<div class="img-box"><img src="${b64}" loading="lazy"/></div>`;
       }));
 
-      // Build HTML
-      const pageHtml = `
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${user.username} - ${critName}</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-<style>
-body{font-family:'Tajawal',sans-serif;background:#f8fafc;color:#1e293b;margin:0;padding:20px}
-header{background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);margin-bottom:20px;text-align:center}
-h1{margin:0;font-size:18px;color:#0f172a}
-.sub{color:#64748b;font-size:14px;margin-top:5px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px}
-.img-box{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.05);border:1px solid #e2e8f0}
-.img-box img{width:100%;height:auto;display:block}
-</style>
-</head>
-<body>
-<header>
-  <h1>${critName}</h1>
-  <div class="sub">المعلم: ${user.username}</div>
-</header>
-<div class="grid">${imagesHtml.join('')}</div>
-</body></html>`;
+      const pageHtml = `<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${user.username}</title><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet"><style>body{font-family:'Tajawal',sans-serif;background:#f8fafc;color:#1e293b;padding:20px}header{background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 10px rgba(0,0,0,0.05);text-align:center;margin-bottom:20px}h1{margin:0;font-size:20px;color:#0ea5e9}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px}.img-box{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,0.05);border:1px solid #e2e8f0}.img-box img{width:100%;display:block}</style></head><body><header><h1>${critName}</h1><p>المعلم: ${user.username}</p></header><div class="grid">${imgs.join('')}</div></body></html>`;
 
-      // Upload HTML
-      await githubUpload(`${uploadBase}/criterion-${id}.html`, pageHtml);
+      // الرفع إلى المسار الذي يحتوي على docs
+      await githubUpload(`${uploadPathPrefix}/criterion-${id}.html`, pageHtml);
 
-      // Generate QR Data
-      const pageUrl = `${CONFIG.baseUrl}/${CONFIG.teacherFolder}/${safeName}/criterion-${id}.html`;
-      const qrDataUrl = await QRCode.toDataURL(pageUrl, { width: 400, margin: 1 });
-
-      appState.generatedQR.push({
-        id: id,
-        name: critName,
-        url: pageUrl,
-        base64: qrDataUrl
-      });
+      // *** التصحيح هنا: الرابط العام لا يحتوي على docs ***
+      const publicUrl = `${CONFIG.baseUrl}/${CONFIG.teacherFolder}/${safeName}/criterion-${id}.html`;
+      
+      const qrData = await QRCode.toDataURL(publicUrl, { width: 400, margin: 1, color: { dark: "#0f172a", light: "#ffffff" } });
+      appState.generatedQR.push({ id, name: critName, url: publicUrl, base64: qrData });
     }
 
-    // Done
-    Swal.close();
-    Swal.fire('تم بنجاح!', 'تم إنشاء جميع الصفحات وروابط QR.', 'success');
-    
+    Swal.fire('نجاح', 'تمت العملية بنجاح', 'success');
     renderResults();
-
-  } catch (err) {
-    console.error(err);
-    Swal.fire('حدث خطأ', 'تأكد من اتصال الإنترنت وحاول مرة أخرى. تفاصيل: ' + err.message, 'error');
-  } finally {
-    btn.disabled = false;
-  }
+  } catch (e) {
+    console.error(e);
+    Swal.fire('خطأ', 'حدثت مشكلة أثناء الرفع: ' + e.message, 'error');
+  } finally { btn.disabled = false; }
 }
 
-// =============================
-// عرض النتائج وتحميل PPTX
-// =============================
 function renderResults() {
   document.getElementById("empty-state").style.display = "none";
-  const resultsArea = document.getElementById("results-area");
-  resultsArea.style.display = "block";
-  
+  document.getElementById("results-area").style.display = "block";
   const list = document.getElementById("qr-list");
   list.innerHTML = "";
-
   appState.generatedQR.forEach(item => {
     const el = document.createElement("div");
     el.className = "qr-item";
@@ -566,172 +278,67 @@ function renderResults() {
       <div class="qr-details">
         <div class="qr-name">${item.name}</div>
         <a href="${item.url}" target="_blank" class="qr-link">${item.url}</a>
-        <div>
-           <button class="btn-xs" onclick="copyLink('${item.url}')">نسخ الرابط</button>
-           <button class="btn-xs" onclick="window.open('${item.url}')">فتح</button>
-        </div>
+        <div><button class="btn-xs" onclick="copyLink('${item.url}')">نسخ</button> <button class="btn-xs" onclick="window.open('${item.url}')">فتح</button></div>
       </div>
     `;
     list.appendChild(el);
   });
 }
 
-function copyLink(url) {
-  navigator.clipboard.writeText(url);
-  const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000 });
-  Toast.fire({ icon: 'success', title: 'تم النسخ' });
-}
+function copyLink(t){ navigator.clipboard.writeText(t); const Toast=Swal.mixin({toast:true,position:'top-end',showConfirmButton:false,timer:1000}); Toast.fire({icon:'success',title:'تم النسخ'}); }
 
 async function exportPPTX() {
-  if (appState.generatedQR.length === 0) return;
-
-  const { value: formValues } = await Swal.fire({
-    title: 'تجهيز ملف البوربوينت',
-    html:
-      '<input id="swal-name" class="swal2-input" placeholder="اسم المعلم">' +
-      '<input id="swal-manager" class="swal2-input" placeholder="اسم المدير">' +
-      '<input id="swal-school" class="swal2-input" placeholder="اسم المدرسة">',
-    focusConfirm: false,
-    confirmButtonText: 'تحميل الملف',
-    preConfirm: () => {
-      return [
-        document.getElementById('swal-name').value,
-        document.getElementById('swal-manager').value,
-        document.getElementById('swal-school').value
-      ]
-    }
+  if (!appState.generatedQR.length) return;
+  const { value: form } = await Swal.fire({
+    title: 'بيانات الغلاف',
+    html: `<input id="sw-name" class="swal2-input" placeholder="اسم المعلم" value="${user.username}"><input id="sw-mgr" class="swal2-input" placeholder="اسم المدير"><input id="sw-sch" class="swal2-input" placeholder="اسم المدرسة">`,
+    preConfirm: () => [document.getElementById('sw-name').value, document.getElementById('sw-mgr').value, document.getElementById('sw-sch').value]
   });
-
-  if (!formValues) return;
-  const [tName, mName, sName] = formValues;
-  if(!tName || !mName || !sName) { Swal.fire('نقص بيانات','يجب تعبئة جميع الحقول','error'); return; }
-
-  Swal.fire({ title: 'جاري إنشاء الملف...', didOpen: () => Swal.showLoading() });
-
+  if (!form || !form[0]) return;
+  
+  Swal.showLoading();
   try {
-    const resp = await fetch("template.pptx");
-    if(!resp.ok) throw new Error("ملف القالب template.pptx غير موجود");
-    
-    const buf = await resp.arrayBuffer();
-    const zip = await JSZip.loadAsync(buf);
+    const zip = await JSZip.loadAsync(await (await fetch("template.pptx")).arrayBuffer());
+    const replaceTxt = async (s, r) => {
+      for (const f of Object.keys(zip.files).filter(k => k.startsWith("ppt/slides/") && k.endsWith(".xml"))) {
+        zip.file(f, (await zip.file(f).async("string")).split(s).join(r));
+      }
+    };
+    await replaceTxt("∑", form[0]); await replaceTxt("∏", form[1]); await replaceTxt("∆", form[2]);
 
-    // استبدال النصوص
-    await replacePptxText(zip, "∑", tName);
-    await replacePptxText(zip, "∏", mName);
-    await replacePptxText(zip, "∆", sName);
-
-    // دمج QR في الشرائح (بداية من الشريحة 8 حسب الكود القديم)
-    const startSlide = 8;
-    
-    // ملاحظة: يجب أن يطابق ترتيب appState.generatedQR ترتيب الشرائح في القالب
-    // سنقوم بالمرور على جميع QR التي تم توليدها
     for (let i = 0; i < appState.generatedQR.length; i++) {
-        const slideNum = startSlide + i;
+        const slideNum = 8 + i; 
         const slidePath = `ppt/slides/slide${slideNum}.xml`;
-        
-        // إذا الشريحة موجودة في القالب
         if (zip.file(slidePath)) {
-            const qrObj = appState.generatedQR[i];
-            const base64Img = qrObj.base64.split(",")[1];
-            const imgFileName = `qr_gen_${i}.png`;
-            const relId = `rId_Auto_QR_${i}`;
-
-            // 1. إضافة الصورة للملف
-            zip.file(`ppt/media/${imgFileName}`, base64Img, { base64: true });
-
-            // 2. تحديث Relationships
-            const relsPath = `ppt/slides/_rels/slide${slideNum}.xml.rels`;
-            let relsXml = zip.file(relsPath) ? await zip.file(relsPath).async("string") : 
-                `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`;
-            
-            if(!relsXml.includes(relId)) {
-                // إغلاق التاج بشكل صحيح
-                relsXml = relsXml.replace("</Relationships>", 
-                    `<Relationship Id="${relId}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/${imgFileName}"/></Relationships>`);
-                zip.file(relsPath, relsXml);
+            const b64 = appState.generatedQR[i].base64.split(",")[1];
+            const imgName = `qr_${i}.png`;
+            const relId = `rId_QR_${i}`;
+            zip.file(`ppt/media/${imgName}`, b64, { base64: true });
+            const relPath = `ppt/slides/_rels/slide${slideNum}.xml.rels`;
+            let relXml = zip.file(relPath) ? await zip.file(relPath).async("string") : `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`;
+            if(!relXml.includes(relId)) {
+                relXml = relXml.replace("</Relationships>", `<Relationship Id="${relId}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/${imgName}"/></Relationships>`);
+                zip.file(relPath, relXml);
             }
-
-            // 3. حقن الصورة في XML الشريحة (في أسفل الطبقات)
-            let slideXml = await zip.file(slidePath).async("string");
-            
-            // XML الصورة (موضع ومقاس تقريبي بناءً على الكود القديم)
-            const picXml = `
-            <p:pic xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-                <p:nvPicPr>
-                    <p:cNvPr id="100${i}" name="QR_Code_${i}"/>
-                    <p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr>
-                    <p:nvPr/>
-                </p:nvPicPr>
-                <p:blipFill>
-                    <a:blip r:embed="${relId}"/>
-                    <a:stretch><a:fillRect/></a:stretch>
-                </p:blipFill>
-                <p:spPr>
-                    <a:xfrm>
-                        <a:off x="6217920" y="4251840"/>
-                        <a:ext cx="2421600" cy="2421600"/>
-                    </a:xfrm>
-                    <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
-                </p:spPr>
-            </p:pic>`;
-
-            // إضافة الصورة قبل نهاية شجرة الأشكال
-            slideXml = slideXml.replace("</p:spTree>", `${picXml}</p:spTree>`);
-            zip.file(slidePath, slideXml);
+            let sXml = await zip.file(slidePath).async("string");
+            const pic = `<p:pic xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><p:nvPicPr><p:cNvPr id="99${i}" name="QR${i}"/><p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr><p:blipFill><a:blip r:embed="${relId}"/><a:stretch><a:fillRect/></a:stretch></p:blipFill><p:spPr><a:xfrm><a:off x="6217920" y="4251840"/><a:ext cx="2421600" cy="2421600"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>`;
+            sXml = sXml.replace("</p:spTree>", pic + "</p:spTree>");
+            zip.file(slidePath, sXml);
         }
     }
-
-    const outBlob = await zip.generateAsync({ type: "blob" });
-    saveAs(outBlob, `ملف-إنجاز-${tName}.pptx`);
-    Swal.close();
-    Swal.fire('تم التحميل', 'تم حفظ ملف البوربوينت بنجاح', 'success');
-
-  } catch(e) {
-    Swal.fire('خطأ في البوربوينت', e.message, 'error');
-  }
-}
-
-// =============================
-// دوال مساعدة (Utils)
-// =============================
-function logout() {
-  sessionStorage.removeItem("loggedInUser");
-  window.location.href = "login.html";
+    saveAs(await zip.generateAsync({ type: "blob" }), `ملف-إنجاز-${form[0]}.pptx`);
+    Swal.fire('تم', 'تم تحميل الملف', 'success');
+  } catch(e) { Swal.fire('خطأ', e.message, 'error'); }
 }
 
 async function githubUpload(path, content) {
-  const res = await fetch(CONFIG.workerUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ path, content })
-  });
-  if (!res.ok) throw new Error("فشل الرفع إلى GitHub");
+  const res = await fetch(CONFIG.workerUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ path, content }) });
+  if (!res.ok) throw new Error("فشل الرفع");
 }
+function fileToDataURL(f) { return new Promise((r, j) => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.onerror = j; fr.readAsDataURL(f); }); }
+function logout() { sessionStorage.removeItem("loggedInUser"); window.location.href = "login.html"; }
 
-function fileToDataURL(file) {
-  return new Promise((resolve, reject) => {
-    const r = new FileReader();
-    r.onload = () => resolve(r.result);
-    r.onerror = reject;
-    r.readAsDataURL(file);
-  });
-}
-
-async function replacePptxText(zip, search, replace) {
-  // البحث في جميع ملفات الـ Slides
-  const slideFiles = Object.keys(zip.files).filter(f => f.startsWith("ppt/slides/") && f.endsWith(".xml"));
-  for (const f of slideFiles) {
-    let xml = await zip.file(f).async("string");
-    // استبدال دقيق وشامل
-    xml = xml.split(search).join(replace);
-    zip.file(f, xml);
-  }
-}
-
-// تشغيل
 init();
 </script>
-
 </body>
-
 </html>
