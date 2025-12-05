@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "username": "alaa",
+      "password": "16",
+      "role": "teacher",
+      "loginCount": 1
+    },
+    {
+      "username": "sf",
+      "password": "Saudi151",
+      "role": "admin",
+      "loginCount": 28
+    },
+    {
+      "username": "test",
+      "password": "1",
+      "role": "teacher",
+      "loginCount": 4
+    }
+  ]
+}
