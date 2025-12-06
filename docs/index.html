@@ -116,13 +116,13 @@ if (!user) window.location.href = "login.html";
 document.getElementById("display-username").textContent = user.username;
 
 // ==========================================
-// إعدادات النظام - تم التصحيح
+// إعدادات النظام - تم التصحيح بالكامل
 // ==========================================
 const CONFIG = {
-  // 1. تم تصحيح الرابط باسم نطاقك الحقيقي snh-saud
+  // 1. رابط الرفع الصحيح الخاص بك (تم استبدال your-name بـ snh-saud)
   uploaderUrl: "https://moe-uploader.snh-saud.workers.dev/", 
   
-  // 2. تم تصحيح اسم المستودع
+  // 2. رابط المشروع الجديد MOE-SF2
   baseUrl: "https://xsf3x.github.io/MOE-SF2", 
   
   // 3. اسم المجلد
@@ -311,7 +311,6 @@ async function exportPPTX() {
 }
 
 async function githubUpload(path, content) {
-  // *** هنا نستخدم رابط uploaderUrl الصحيح ***
   const res = await fetch(CONFIG.uploaderUrl, { 
     method: "POST", 
     headers: { "Content-Type": "application/json" }, 
