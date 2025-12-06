@@ -116,14 +116,13 @@ if (!user) window.location.href = "login.html";
 document.getElementById("display-username").textContent = user.username;
 
 // ==========================================
-// إعدادات النظام - تأكد من الروابط هنا
+// إعدادات النظام - تم التصحيح
 // ==========================================
 const CONFIG = {
-  // 1. رابط الرفع (moe-uploader)
-  // هام: هذا هو الرابط الذي كان يسبب الخطأ، تم تعديله لاسم الوركر المفترض
+  // 1. تم تصحيح الرابط باسم نطاقك الحقيقي snh-saud
   uploaderUrl: "https://moe-uploader.snh-saud.workers.dev/", 
   
-  // 2. رابط موقعك الجديد على GitHub
+  // 2. تم تصحيح اسم المستودع
   baseUrl: "https://xsf3x.github.io/MOE-SF2", 
   
   // 3. اسم المجلد
@@ -312,13 +311,16 @@ async function exportPPTX() {
 }
 
 async function githubUpload(path, content) {
-  // *** هنا التعديل الجوهري: استخدام رابط الرفع وليس رابط المستخدمين ***
+  // *** هنا نستخدم رابط uploaderUrl الصحيح ***
   const res = await fetch(CONFIG.uploaderUrl, { 
     method: "POST", 
     headers: { "Content-Type": "application/json" }, 
     body: JSON.stringify({ path, content }) 
   });
-  if (!res.ok) throw new Error("فشل الاتصال بالوركر (تأكد من الرابط)");
+  if (!res.ok) {
+     const errorText = await res.text();
+     throw new Error(`Error ${res.status}: ${errorText}`);
+  }
 }
 
 function fileToDataURL(f) { return new Promise((r, j) => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.onerror = j; fr.readAsDataURL(f); }); }
