@@ -11,15 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 
   <style>
-    :root {
-      --primary: #0ea5e9;
-      --primary-hover: #0284c7;
-      --bg-main: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-    }
+    :root { --primary: #0ea5e9; --bg-main: #f8fafc; --text-main: #0f172a; --border: #e2e8f0; }
     * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
     body { margin: 0; background: var(--bg-main); color: var(--text-main); min-height: 100vh; padding-bottom: 50px; }
     header { background: #fff; border-bottom: 1px solid var(--border); padding: 15px 20px; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
@@ -27,18 +19,16 @@
     .brand { display: flex; align-items: center; gap: 12px; }
     .brand img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; background: #f1f5f9; padding: 4px; border: 1px solid var(--border); }
     .brand-text h1 { margin: 0; font-size: 20px; font-weight: 800; color: var(--text-main); }
-    .brand-text p { margin: 0; font-size: 12px; color: var(--primary); font-weight: 600; }
     .user-info { background: #f1f5f9; padding: 8px 16px; border-radius: 30px; font-size: 13px; display: flex; align-items: center; gap: 12px; border: 1px solid var(--border); }
     .logout-btn { background: #fee2e2; color: #dc2626; border: none; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
     .logout-btn:hover { background: #fecaca; }
     .app-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1.2fr; gap: 25px; }
     @media (max-width: 900px) { .app-container { grid-template-columns: 1fr; } }
-    .panel { background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border); padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
+    .panel { background: #fff; border-radius: 24px; border: 1px solid var(--border); padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
     .panel-header { margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
     .panel-title { font-size: 18px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
     .criteria-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
     .criterion-card { background: #f8fafc; border: 2px solid transparent; border-radius: 16px; padding: 15px; transition: all 0.2s; position: relative; overflow: hidden; }
-    .criterion-card:hover { border-color: #cbd5e1; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
     .criterion-card.has-files { border-color: var(--primary); background: #f0f9ff; }
     .c-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
     .c-title { font-size: 13px; font-weight: 700; color: #334155; line-height: 1.5; }
@@ -46,24 +36,20 @@
     .c-badge.active { background: var(--primary); color: #fff; }
     .drop-zone { border-radius: 12px; background: #fff; border: 2px dashed #cbd5e1; padding: 15px; text-align: center; cursor: pointer; transition: 0.2s; }
     .drop-zone:hover { border-color: var(--primary); background: #f0f9ff; }
-    .drop-text { font-size: 11px; color: var(--text-muted); }
     .drop-icon { font-size: 24px; display: block; margin-bottom: 5px; color: #94a3b8; }
     .thumbs-container { display: flex; gap: 6px; overflow-x: auto; margin-top: 12px; padding-bottom: 4px; }
     .thumb { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-shrink: 0; }
-    .btn-main { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: #fff; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25); transition: transform 0.2s; margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 10px; }
-    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(14, 165, 233, 0.35); }
-    .btn-main:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; background: #94a3b8; }
+    .btn-main { width: 100%; background: linear-gradient(135deg, var(--primary), #0284c7); color: #fff; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25); transition: transform 0.2s; margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+    .btn-main:hover { transform: translateY(-2px); }
+    .btn-main:disabled { opacity: 0.6; cursor: not-allowed; transform: none; background: #94a3b8; }
     .btn-sec { background: #334155; color: #fff; border: none; padding: 14px; width: 100%; border-radius: 14px; cursor: pointer; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; }
-    .btn-sec:hover { background: #1e293b; }
     .qr-list { display: flex; flex-direction: column; gap: 12px; max-height: 500px; overflow-y: auto; }
     .qr-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 16px; display: flex; gap: 15px; align-items: center; transition: 0.2s; }
-    .qr-item:hover { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
     .qr-img { width: 70px; height: 70px; background: #fff; padding: 5px; border-radius: 10px; border: 1px solid #e2e8f0; }
     .qr-details { flex: 1; min-width: 0; }
     .qr-name { font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #1e293b; }
     .qr-link { font-size: 11px; color: var(--primary); text-decoration: none; word-break: break-all; display: block; margin-bottom: 8px; }
     .btn-xs { padding: 5px 10px; font-size: 11px; border-radius: 6px; border: none; cursor: pointer; background: #e2e8f0; color: #475569; font-weight: 600; }
-    .btn-xs:hover { background: #cbd5e1; }
     .footer-note { text-align: center; margin-top: 40px; font-size: 13px; color: #94a3b8; font-weight: 500; }
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -78,72 +64,69 @@
       <img src="teacher_logo.png" alt="logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2995/2995456.png'">
       <div class="brand-text">
         <h1>ملف الإنجاز الذكي</h1>
-        <p>نظام التوثيق المتطور - MOE SF2</p>
+        <p style="font-size:12px; color:var(--primary); font-weight:600">MOE SF2</p>
       </div>
     </div>
-    
     <div class="user-info">
-      <span>👤 مرحباً، <span id="display-username" style="color:var(--primary);font-weight:bold;">...</span></span>
+      <span>👤 <span id="display-username" style="color:var(--primary);font-weight:bold;">...</span></span>
       <button class="logout-btn" onclick="logout()">خروج</button>
     </div>
   </div>
 </header>
 
 <div class="app-container">
-  
   <section class="panel">
     <div class="panel-header">
       <div class="panel-title"><span>📂</span> المعايير والشواهد</div>
-      <div style="font-size:12px; color:#64748b; font-weight:500;">اسحب الصور داخل المربعات</div>
+      <div style="font-size:12px; color:#64748b;">اسحب الصور داخل المربعات</div>
     </div>
     <div id="criteria-container" class="criteria-grid"></div>
     <button id="btn-generate" class="btn-main" onclick="startGeneration()">
-      <span>🚀</span> رفع الشواهد وإنشاء الملفات
+      <span>🚀</span> رفع الشواهد
     </button>
   </section>
 
   <section class="panel">
     <div class="panel-header">
-      <div class="panel-title"><span>📊</span> المخرجات النهائية</div>
+      <div class="panel-title"><span>📊</span> المخرجات</div>
     </div>
     <div id="empty-state" style="text-align:center; padding: 50px 0; color: #94a3b8;">
       <div style="font-size:48px; margin-bottom:15px; opacity:0.5;">☁️</div>
-      <p style="font-weight:500;">النظام جاهز للعمل.<br>قم برفع الصور للبدء.</p>
+      <p>جاهز للعمل...</p>
     </div>
     <div id="results-area" style="display:none;">
       <div style="background:#dcfce7; color:#166534; padding:10px; border-radius:10px; font-size:13px; margin-bottom:15px; font-weight:600; text-align:center;">
-        ✅ تم إنشاء الروابط بنجاح!
+        ✅ تم إنشاء الصفحات بنجاح
       </div>
       <div id="qr-list" class="qr-list"></div>
       <div style="margin-top:25px; border-top:2px solid #f1f5f9; padding-top:20px;">
         <button id="btn-pptx" class="btn-sec" onclick="exportPPTX()">
-          <span>📥</span> تحميل عرض PowerPoint
+          <span>📥</span> تحميل PowerPoint
         </button>
       </div>
     </div>
   </section>
-
 </div>
 
-<div class="footer-note">وزارة التعليم - نظام ملف الإنجاز الإلكتروني الإصدار الثاني © 1447هـ</div>
+<div class="footer-note">نظام ملف الإنجاز - MOE SF2</div>
 
 <script>
-// =============================
-// إعدادات النظام الجديدة (معدلة)
-// =============================
 const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
 if (!user) window.location.href = "login.html";
-
 document.getElementById("display-username").textContent = user.username;
 
+// ==========================================
+// إعدادات النظام - تأكد من الروابط هنا
+// ==========================================
 const CONFIG = {
-  // رابط الوركر الخاص بك (يبقى كما هو)
-  workerUrl: "https://moe-users.snh-saud.workers.dev/", 
+  // 1. رابط الرفع (moe-uploader)
+  // هام: هذا هو الرابط الذي كان يسبب الخطأ، تم تعديله لاسم الوركر المفترض
+  uploaderUrl: "https://moe-uploader.snh-saud.workers.dev/", 
   
-  // *** الرابط الأساسي للموقع الجديد MOE-SF2 ***
+  // 2. رابط موقعك الجديد على GitHub
   baseUrl: "https://xsf3x.github.io/MOE-SF2", 
   
-  // اسم المجلد داخل docs
+  // 3. اسم المجلد
   teacherFolder: "TEACHERS", 
 
   criteria: [
@@ -177,7 +160,7 @@ function init() {
       <div class="c-header"><div class="c-title">${name}</div><div class="c-badge" id="badge-${id}">0</div></div>
       <div class="drop-zone" onclick="document.getElementById('file-${id}').click()">
         <input type="file" id="file-${id}" multiple accept="image/*" style="display:none" onchange="handleFileSelect(${id}, this)">
-        <span class="drop-icon">📷</span><span class="drop-text">اختر الصور</span>
+        <span class="drop-icon">📷</span>
       </div>
       <div class="thumbs-container" id="thumbs-${id}"></div>
     `;
@@ -207,9 +190,7 @@ function updateCardUI(id) {
   thumbs.innerHTML = "";
   files.forEach(file => {
     const reader = new FileReader();
-    reader.onload = e => {
-      const img = document.createElement("img"); img.src = e.target.result; img.className = "thumb"; thumbs.appendChild(img);
-    };
+    reader.onload = e => { const img = document.createElement("img"); img.src = e.target.result; img.className = "thumb"; thumbs.appendChild(img); };
     reader.readAsDataURL(file);
   });
 }
@@ -219,8 +200,6 @@ async function startGeneration() {
   if (!filledIds.length) return Swal.fire('تنبيه', 'يجب اختيار صور أولاً', 'info');
 
   const safeName = user.username.replace(/[^a-zA-Z0-9\u0600-\u06FF\s_-]/g, "").trim().replace(/\s+/g, "-");
-  
-  // *** التصحيح هنا: مسار الرفع يحتوي على docs ***
   const uploadPathPrefix = `docs/${CONFIG.teacherFolder}/${safeName}`;
 
   if(!await Swal.fire({ title: 'هل أنت جاهز؟', text: `سيتم الرفع لـ ${filledIds.length} معيار`, icon: 'question', showCancelButton: true, confirmButtonText: 'ابدأ', confirmButtonColor: 'var(--primary)' }).then(r=>r.isConfirmed)) return;
@@ -229,12 +208,13 @@ async function startGeneration() {
   btn.disabled = true;
   appState.generatedQR = [];
 
-  Swal.fire({ title: 'جاري العمل...', html: 'يرجى عدم إغلاق الصفحة', didOpen: () => Swal.showLoading() });
+  Swal.fire({ title: 'جاري الرفع...', html: 'يرجى الانتظار وعدم إغلاق الصفحة', didOpen: () => Swal.showLoading() });
 
   try {
-    // ملف config داخل docs
+    // 1. رفع ملف التكوين
     await githubUpload("docs/_config.yml", `include:\n  - "**/*.html"\n`);
 
+    // 2. رفع المعايير
     for (const id of filledIds) {
       const files = appState.selectedFiles[id];
       const critName = CONFIG.criteria[id - 1];
@@ -247,21 +227,21 @@ async function startGeneration() {
 
       const pageHtml = `<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${user.username}</title><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet"><style>body{font-family:'Tajawal',sans-serif;background:#f8fafc;color:#1e293b;padding:20px}header{background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 10px rgba(0,0,0,0.05);text-align:center;margin-bottom:20px}h1{margin:0;font-size:20px;color:#0ea5e9}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px}.img-box{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,0.05);border:1px solid #e2e8f0}.img-box img{width:100%;display:block}</style></head><body><header><h1>${critName}</h1><p>المعلم: ${user.username}</p></header><div class="grid">${imgs.join('')}</div></body></html>`;
 
-      // الرفع إلى المسار الذي يحتوي على docs
+      // الرفع
       await githubUpload(`${uploadPathPrefix}/criterion-${id}.html`, pageHtml);
 
-      // *** التصحيح هنا: الرابط العام لا يحتوي على docs ***
+      // توليد الرابط (بدون docs)
       const publicUrl = `${CONFIG.baseUrl}/${CONFIG.teacherFolder}/${safeName}/criterion-${id}.html`;
       
       const qrData = await QRCode.toDataURL(publicUrl, { width: 400, margin: 1, color: { dark: "#0f172a", light: "#ffffff" } });
       appState.generatedQR.push({ id, name: critName, url: publicUrl, base64: qrData });
     }
 
-    Swal.fire('نجاح', 'تمت العملية بنجاح', 'success');
+    Swal.fire('تم بنجاح', 'تم رفع الملفات وتوليد الروابط', 'success');
     renderResults();
   } catch (e) {
     console.error(e);
-    Swal.fire('خطأ', 'حدثت مشكلة أثناء الرفع: ' + e.message, 'error');
+    Swal.fire('خطأ', 'فشل الرفع: ' + e.message, 'error');
   } finally { btn.disabled = false; }
 }
 
@@ -332,9 +312,15 @@ async function exportPPTX() {
 }
 
 async function githubUpload(path, content) {
-  const res = await fetch(CONFIG.workerUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ path, content }) });
-  if (!res.ok) throw new Error("فشل الرفع");
+  // *** هنا التعديل الجوهري: استخدام رابط الرفع وليس رابط المستخدمين ***
+  const res = await fetch(CONFIG.uploaderUrl, { 
+    method: "POST", 
+    headers: { "Content-Type": "application/json" }, 
+    body: JSON.stringify({ path, content }) 
+  });
+  if (!res.ok) throw new Error("فشل الاتصال بالوركر (تأكد من الرابط)");
 }
+
 function fileToDataURL(f) { return new Promise((r, j) => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.onerror = j; fr.readAsDataURL(f); }); }
 function logout() { sessionStorage.removeItem("loggedInUser"); window.location.href = "login.html"; }
 
