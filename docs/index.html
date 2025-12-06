@@ -270,7 +270,7 @@ async function exportPPTX() {
   if (!appState.generatedQR.length) return;
   const { value: form } = await Swal.fire({
     title: 'بيانات الغلاف',
-    html: `<input id="sw-name" class="swal2-input" placeholder="اسم المعلم" value="${user.username}"><input id="sw-mgr" class="swal2-input" placeholder="اسم المدير"><input id="sw-sch" class="swal2-input" placeholder="اسم المدرسة">`,
+    html: `<input id="sw-name" class="swal2-input" placeholder="اسم المعلم"><input id="sw-mgr" class="swal2-input" placeholder="اسم المدير"><input id="sw-sch" class="swal2-input" placeholder="اسم المدرسة">`,
     preConfirm: () => [document.getElementById('sw-name').value, document.getElementById('sw-mgr').value, document.getElementById('sw-sch').value]
   });
   if (!form || !form[0]) return;
@@ -329,3 +329,4 @@ init();
 </script>
 </body>
 </html>
+
